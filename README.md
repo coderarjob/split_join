@@ -34,7 +34,7 @@ split -j splitted/Windows.iso.1 Windows.iso
 `
 Joins the multiple splitted files into one large file.
 
-### Notes:
+#### Notes:
 
 This was a quick application to program. Feel free to contribute or clone it to
 make it your own. 
