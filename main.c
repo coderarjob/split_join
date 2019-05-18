@@ -117,6 +117,5 @@ size_t strtosize(char *sizestring)
 			return 0;
 		}
 
-	printf("%lu\n",size);
 	return size;
 }
