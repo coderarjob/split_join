@@ -1,11 +1,12 @@
 #include <stdlib.h> // size_t, strtol
+#include <string.h> // strcasecmp
 #include <limits.h> // LONG_MAX, LONG_MIN
 #include <stdio.h>
 #include "split.h"
 
 byte buffer[BUFFER_SIZE];
 
-#define USAGE(p) printf("USAGE:\n%s [-j|-s -sz <splitsize>] source dest\n",p)
+#define USAGE(p) printf("USAGE:\n%s [-j|-s -sz <splitsize (gb|mb|kb)>] source dest\n",p)
 
 #define MODE_UNDEFINED 0
 #define MODE_SPLIT 1
@@ -97,9 +98,25 @@ size_t strtosize(char *sizestring)
 		If  an  underflow  occurs,  strtol() returns  LONG_MIN.   
 		If an overflow occurs, strtol() returns LONG_MAX.*/
 
-	size_t size = strtol(sizestring,NULL,10);
+	char *rest_of_string;
+	size_t size = strtol(sizestring,&rest_of_string,10);
 	if (size == LONG_MIN || size == LONG_MAX)
 		return 0;
+
+	if (strcasecmp(rest_of_string,"GB") == 0)
+		size *= 1024 * 1024 * 1024;
+	else if (strcasecmp(rest_of_string,"MB") == 0)
+		size *= 1024 * 1024;
+	else if (strcasecmp(rest_of_string,"KB") == 0)
+		size *= 1024;
+	else if (strcmp(rest_of_string,"") == 0)
+		;
 	else
-		return size;
+		{
+			printf("Invalid unit '%s'\n",rest_of_string);
+			return 0;
+		}
+
+	printf("%lu\n",size);
+	return size;
 }

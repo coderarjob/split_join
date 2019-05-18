@@ -33,9 +33,9 @@ int split(char *source, char *destination, size_t splitsize, int startnum)
 static size_t copybytes(int sourcefd, int destinationfd, size_t splitsize)
 {
 	int remaining_split_file_bytes = splitsize;
-	int readlength;
+	int readlength = 1;	// so that we can enter the loop
 
-	while (remaining_split_file_bytes > BUFFER_SIZE)
+	while (remaining_split_file_bytes > BUFFER_SIZE && readlength > 0)
 	{
 		if ((readlength = read(sourcefd,buffer,BUFFER_SIZE)) == -1)
 			PANIC("read",1);
