@@ -20,18 +20,20 @@ __destination__
 * **-s** : Splits the file specified in the __source__ into many smaller files
  as one specied in __destination__.
 * **-sz** : Size of each split is specied as `100mb`. You can use GB, MB, KB with a 
-number to specify size. If only a number is entered unit **bytes** is assumed.
+number to specify size. If only a number is entered **bytes** is assumed.
 
 ## Examples:
 `
 split Windows.iso -s -sz 700mb splitted/Windows.iso
 `
-Splits Windows.iso into multiples files 700MB of size each inside the splitted
-direcctory as _Windows.iso.1_, _Windows.iso.2_ and so on.
+
+Splits Windows.iso into multiples files 700MB each inside the **splitted**
+directory as _Windows.iso.1_, _Windows.iso.2_ and so on.
 
 `
 split -j splitted/Windows.iso.1 Windows.iso
 `
+
 Joins the multiple splitted files into one large file.
 
 #### Notes:
