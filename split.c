@@ -1,4 +1,5 @@
 #include "split.h"
+#include <sys/stat.h> // for fstat
 #include <fcntl.h> // for open
 #include <unistd.h> // for read,write,close
 

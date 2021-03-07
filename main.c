@@ -112,10 +112,10 @@ size_t strtosize(char *sizestring)
 	else if (strcmp(rest_of_string,"") == 0)
 		;
 	else
-		{
-			printf("Invalid unit '%s'\n",rest_of_string);
-			return 0;
-		}
+	{
+		printf("Invalid unit '%s'\n",rest_of_string);
+		return 0;
+	}
 
 	return size;
 }
